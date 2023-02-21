@@ -1,6 +1,8 @@
 package com.learnSpring.learnSpring.topic;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import com.learnSpring.learnSpring.topic.TopicRepository;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@ComponentScan(basePackageClasses = "com.learnSpring.learnSpring.topic.")
 public class TopicService {
     @Autowired
     private TopicRepository topicRepository;

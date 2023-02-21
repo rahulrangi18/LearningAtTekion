@@ -1,49 +1,56 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.StartGame.StartGame;
-import org.springframework.boot.autoconfigure.jdbc.*;
-import org.springframework.boot.autoconfigure.orm.jpa.*;
-import org.springframework.context.annotation.Configuration;
-import java.util.Scanner;
-@Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-public class TekionCricketWithDatabaseApplication {
-    public static void main(String[] args)
-    {
-        int overs=1,PlayersInATeam,userInput;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Let's play CRICKET, Let's set some basic rule\n");
-        System.out.printf("Enter No. of Overs in game: \n");
-        overs=input.nextInt();
-        int TotalBalls=6*overs;
-        System.out.printf("Enter No. of Players in ̱̱each Team (suggested: 11): \n");
-        PlayersInATeam=input.nextInt();
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-        StartGame game = new StartGame();
-        System.out.println("Namashkar Main Aakash Chopra, Swagat krta hu hamare 'Tekion Premier League (TPL) me' \n");
-        do
-        {
-            System.out.println("Ready to play CRICKET, '1' to PLAY, press '2' for Instructions and '0' to QUIT \n");
-            userInput = input.nextInt();
-            switch(userInput)
-            {
-                case 0: break;
-                case 1:
-                {
-                    game.gameReset(overs,PlayersInATeam,0,PlayersInATeam,0);     //overs, wicketsPlayer1, runsPlayer1, wicketsPlayer2, runsPlayer2
-                    game.gamePlay(TotalBalls,PlayersInATeam);
-                    break;
-                }
-                case 2:
-                {
-                    game.gameReset(overs,PlayersInATeam,0,PlayersInATeam,0);
-                    game.gameRules();
-                    break;
-                }
-                default:  System.out.println("Invalid Input!!!");
-            }
+import java.util.List;
+
+
+@SpringBootApplication
+@RestController
+@EnableMongoRepositories(basePackageClasses = CricketRepository.class)
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+public class TekionCricketWithDatabaseApplication {
+    @Autowired
+    CricketRepository cricketRepository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(TekionCricketWithDatabaseApplication.class, args);
+    }
+
+    @GetMapping("/")
+    public String sm(){
+        String A="Namashkar Main Aakash Chopra, Swagat krta hu hamare 'Tekion Premier League (TPL) me'";
+        String B="Intructions:-";
+        String C="1.) /start -> Play the match";
+        String D="2.) /all -> show all data";
+        String E="4.) /del -> delete all";
+        String FinalMsg=A+"\n"+B+"\n"+C+"\n"+D+"\n"+E;
+        return FinalMsg;
+    }
+    @GetMapping("/start")
+    public Match startMatch( ){
+        Match match = new Match();
+        cricketRepository.insert(match);
+        return match;
+    }
+    @GetMapping("/check")
+    public List<Match> showAll(){
+        return cricketRepository.findAll();
+    }
+    @GetMapping("/delete")
+    public String del(){
+        try{
+            cricketRepository.deleteAll();
+            return "Success";
         }
-        while(userInput != 0);
-            System.out.println("Tata Bye-Bye Good Night");
+        catch (Exception e){
+            return "Try again";
+        }
     }
 }

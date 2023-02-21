@@ -124,7 +124,7 @@ public class StartGame {
                     break;
                 }
                 case 6:{
-                    while(balls1>0)
+                    while(balls1>0 && wicketsPlayer1>0)
                     {
                         if(balls1==TotalBalls)
                         {

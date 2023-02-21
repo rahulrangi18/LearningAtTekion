@@ -6,13 +6,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@Configuration
-@ComponentScan
+//@Configuration
+//@ComponentScan(com.learnSpring.learnSpring.topic.TopicRepository)
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-@RestController
+//@Component
+//@RestController
 public class LearnSpringAndDatabaseApplication {
 
 	public static void main(String[] args) {
