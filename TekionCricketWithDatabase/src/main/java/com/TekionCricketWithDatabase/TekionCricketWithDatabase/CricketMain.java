@@ -65,7 +65,7 @@ class Team{
     }
 
     public void setPlayerInTeam(int playerInTeam) {
-        PlayerInTeam = playerInTeam;
+        this.PlayerInTeam = playerInTeam;
     }
 
 
@@ -90,17 +90,17 @@ class Team{
         this.name = input.next();
         System.out.printf("Enter No. of Players in ̱̱each Team (suggested: 11): \n");
         int n=input.nextInt();
-        this.PlayerInTeam =n;
+        setPlayerInTeam(n);
         this.players = new ArrayList<Player>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < getPlayerInTeam(); i++) {
             System.out.println("Enter Your Player Name:\n");
             String nameTmp = input.next();
             Role role;
             if (i == 0)
                 role = Role.WICKET_KEEPER;
-            else if (i < n/4)
+            else if (i < (40/100)*n)
                 role = Role.BATSMAN;
-            else if (i < n/6)
+            else if (i < (60/100)*n)
                 role = Role.ALL_ROUNDER;
             else
                 role = Role.BOWLER;
@@ -267,7 +267,7 @@ class Match{
         bowlingTeam = team1.getStatus()==TeamStatus.BATTING?team1:team2;
         System.out.println(battingTeam.getName()+ " is batting now");
         Innings innings2 = new Innings(battingTeam, bowlingTeam, false);
-        innings1.setTotalOver(TotalOvr);
+        innings2.setTotalOver(TotalOvr);
         innings2.setTargetScore(target);
         innings2.startInnings();
         scoreBoard1 = innings2.getScoreBoard();
