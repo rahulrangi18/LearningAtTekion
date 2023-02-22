@@ -94,15 +94,17 @@ class Team{
         setPlayerInTeam(n);
         System.out.println(this.name +" is Playing with "+getPlayerInTeam()+" Players\n");
         this.players = new ArrayList<Player>();
+        float b=((float)40/100)*n;
+        float c=((float)60/100)*n;
         for (int i = 1; i <= getPlayerInTeam(); i++) {
             System.out.print("Enter Team "+this.name+" Player "+i+" Name: ");
             String nameTmp = input.next();
             Role role;
-            if (i == 0)
+            if (i == 1)
                 role = Role.WICKET_KEEPER;
-            else if (i < (40/100)*n)
+            else if (i < (int)b)
                 role = Role.BATSMAN;
-            else if (i < (60/100)*n)
+            else if (i < (int)c)
                 role = Role.ALL_ROUNDER;
             else
                 role = Role.BOWLER;
@@ -213,7 +215,7 @@ class Innings{
         }
     }
 }
-@Document(collection = "matches")
+@Document(collection = "TekionMatches")
 @ToString
 @Getter
 @Setter
@@ -228,7 +230,7 @@ class Match{
     public Match(){
         Scanner input = new Scanner(System.in);
         System.out.println("Let's play CRICKET, Let's set some basic rule\n");
-        System.out.printf("Enter No. of Overs in game: ");
+        System.out.print("Enter No. of Overs in game: ");
         int TotalOvr=input.nextInt();
 
         Random rand = new Random();
