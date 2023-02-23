@@ -65,7 +65,7 @@ class Team{
     }
 
     public void setPlayerInTeam(int playerInTeam) {
-        PlayerInTeam = playerInTeam;
+        this.PlayerInTeam = playerInTeam;
     }
 
 
@@ -86,21 +86,25 @@ class Team{
     public Team() {
         // create random team name and 11 random players and add them to the team
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter Your Team Name:\n");
+        System.out.println("========================================");
+        System.out.print("Enter Your Team Name: ");
         this.name = input.next();
-        System.out.printf("Enter No. of Players in ̱̱each Team (suggested: 11): \n");
+        System.out.print("Enter No. of Players in "+this.name+ " ̱̱Team (suggested: 11): ");
         int n=input.nextInt();
-        this.PlayerInTeam =n;
+        setPlayerInTeam(n);
+        System.out.println(this.name +" is Playing with "+getPlayerInTeam()+" Players\n");
         this.players = new ArrayList<Player>();
-        for (int i = 0; i < n; i++) {
-            System.out.println("Enter Your Player Name:\n");
+        float b=((float)40/100)*n;
+        float c=((float)60/100)*n;
+        for (int i = 1; i <= getPlayerInTeam(); i++) {
+            System.out.print("Enter Team "+this.name+" Player "+i+" Name: ");
             String nameTmp = input.next();
             Role role;
-            if (i == 0)
+            if (i == 1)
                 role = Role.WICKET_KEEPER;
-            else if (i < n/4)
+            else if (i < (int)b)
                 role = Role.BATSMAN;
-            else if (i < n/6)
+            else if (i < (int)c)
                 role = Role.ALL_ROUNDER;
             else
                 role = Role.BOWLER;
@@ -123,6 +127,7 @@ class Innings{
 
 
     private int TotalOver;
+    private int PlayerInTeam;
     public int getTotalOver() {
         return TotalOver;
     }
@@ -136,10 +141,12 @@ class Innings{
     private Team bowlingTeam;
     private boolean isFirstInnings;
     private int targetScore=0;
-    public Innings(Team battingTeam, Team bowlingTeam, boolean isFirstInnings){
+    public Innings(Team battingTeam, Team bowlingTeam, boolean isFirstInnings,int TotalOvr,int PlayerInTm){
         this.isFirstInnings=isFirstInnings;
         this.battingTeam = battingTeam;
         this.bowlingTeam = bowlingTeam;
+        this.TotalOver=TotalOvr;
+        this.PlayerInTeam=PlayerInTm;
     }
     public ArrayList<ArrayList<Character>> getScoreBoard(){
         return this.scoreBoard;
@@ -170,7 +177,7 @@ class Innings{
                 if(runs==-1){
                     this.scoreBoard.get(this.overs).add('W');
                     this.battingTeam.setWickets(this.battingTeam.getWickets()+1);
-                    if(this.battingTeam.getWickets()==10){
+                    if(this.battingTeam.getWickets()==this.PlayerInTeam-1){
                         if(isFirstInnings){
                             return;
                         }
@@ -208,7 +215,7 @@ class Innings{
         }
     }
 }
-@Document(collection = "matches")
+@Document(collection = "TekionMatches")
 @ToString
 @Getter
 @Setter
@@ -223,7 +230,7 @@ class Match{
     public Match(){
         Scanner input = new Scanner(System.in);
         System.out.println("Let's play CRICKET, Let's set some basic rule\n");
-        System.out.printf("Enter No. of Overs in game: \n");
+        System.out.print("Enter No. of Overs in game: ");
         int TotalOvr=input.nextInt();
 
         Random rand = new Random();
@@ -249,8 +256,7 @@ class Match{
         Team battingTeam = team1.getStatus()==TeamStatus.BATTING?team1:team2;
         Team bowlingTeam = team1.getStatus()==TeamStatus.BOWLING?team1:team2;
 
-        Innings innings1 = new Innings(battingTeam, bowlingTeam, true);
-        innings1.setTotalOver(TotalOvr);
+        Innings innings1 = new Innings(battingTeam, bowlingTeam, true,TotalOvr,team1.getPlayerInTeam());
         innings1.startInnings();
         targetScore = battingTeam.getRuns()+1;
         int target = battingTeam.getRuns()+1;
@@ -266,8 +272,7 @@ class Match{
         battingTeam = team1.getStatus()==TeamStatus.BOWLING?team1:team2;
         bowlingTeam = team1.getStatus()==TeamStatus.BATTING?team1:team2;
         System.out.println(battingTeam.getName()+ " is batting now");
-        Innings innings2 = new Innings(battingTeam, bowlingTeam, false);
-        innings1.setTotalOver(TotalOvr);
+        Innings innings2 = new Innings(battingTeam, bowlingTeam, false,TotalOvr,team2.getPlayerInTeam());
         innings2.setTargetScore(target);
         innings2.startInnings();
         scoreBoard1 = innings2.getScoreBoard();

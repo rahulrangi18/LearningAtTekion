@@ -28,8 +28,8 @@ public class TekionCricketWithDatabaseApplication {
         String A="Namashkar Main Aakash Chopra, Swagat krta hu hamare 'Tekion Premier League (TPL) me'";
         String B="Intructions:-";
         String C="1.) /start -> Play the match";
-        String D="2.) /all -> show all data";
-        String E="4.) /del -> delete all";
+        String D="2.) /check -> show all data";
+        String E="4.) /delete -> delete all";
         String FinalMsg=A+"\n"+B+"\n"+C+"\n"+D+"\n"+E;
         return FinalMsg;
     }
