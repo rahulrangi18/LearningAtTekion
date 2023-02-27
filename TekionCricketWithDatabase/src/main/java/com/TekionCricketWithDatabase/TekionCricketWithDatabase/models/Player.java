@@ -1,5 +1,6 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.models;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Role;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,6 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Data
 public class Player {
     private String name;
     private Role role;

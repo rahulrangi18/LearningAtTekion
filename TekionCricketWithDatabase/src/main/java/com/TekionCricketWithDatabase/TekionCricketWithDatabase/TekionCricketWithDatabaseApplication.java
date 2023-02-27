@@ -1,6 +1,5 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.reposiries.CricketRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,5 +17,4 @@ public class TekionCricketWithDatabaseApplication {
 
         SpringApplication.run(TekionCricketWithDatabaseApplication.class, args);
     }
-
 }

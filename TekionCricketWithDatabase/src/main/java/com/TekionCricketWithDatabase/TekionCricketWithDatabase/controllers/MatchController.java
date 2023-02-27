@@ -1,10 +1,10 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.controllers;
 
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.Match;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.reposiries.CricketRepository;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MatchController {
 
+    @Autowired
     private CricketRepository cricketRepository;
 
     @GetMapping("/")

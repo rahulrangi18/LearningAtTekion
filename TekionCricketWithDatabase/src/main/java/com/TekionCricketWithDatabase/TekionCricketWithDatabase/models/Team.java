@@ -1,6 +1,5 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.models;
-//import com.TekionCricketWithDatabase.TekionCricketWithDatabase.Player;
-//import com.TekionCricketWithDatabase.TekionCricketWithDatabase.Role;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
