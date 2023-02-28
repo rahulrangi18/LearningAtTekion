@@ -2,8 +2,11 @@ package com.TekionCricketWithDatabase.TekionCricketWithDatabase.controllers;
 
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.MatchService;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +16,8 @@ import java.util.List;
 public class MatchController {
 
     @Autowired
-    private CricketRepository cricketRepository;
+    private MatchService matchService;
+    //private CricketRepository cricketRepository;
 
     @GetMapping("/")
     public String mainPage(){
@@ -25,24 +29,55 @@ public class MatchController {
         String finalMsg=A+"\n"+B+"\n"+C+"\n"+D+"\n"+E;
         return finalMsg;
     }
-    @GetMapping("/start")
-    public Match startMatch( ){
-        Match match = new Match();
-        cricketRepository.insert(match);
-        return match;
-    }
-    @GetMapping("/check")
+
+    @GetMapping("/check-all")
     public List<Match> showAll(){
-        return cricketRepository.findAll();
+        return matchService.showAll();
     }
-    @GetMapping("/delete")
-    public String deleteAll(){
-        try{
-            cricketRepository.deleteAll();
-            return "Success";
-        }
-        catch (Exception e){
-            return "Try again";
-        }
+
+    @GetMapping("/start")
+    public Match startMatch(){
+        return matchService.startMatch();
     }
+    @GetMapping("/view/{id}")
+    public Match viewById(@PathVariable("id")String id){
+        return matchService.viewById(id);
+    }
+
+    @PostMapping(
+            value = "/view-team",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Match> viewByTeam(@RequestBody @NotNull TeamName teamName){
+        return matchService.viewByTeam(teamName.name());
+    }
+
+    @DeleteMapping("/del")
+    public void deleteMatches(){
+        matchService.deleteAll();
+    }
+    record TeamName(String name){
+
+    }
+
+//    @GetMapping("/start")
+//    public Match startMatch( ){
+//        Match match = new Match();
+//        cricketRepository.insert(match);
+//        return match;
+//    }
+//    @GetMapping("/check")
+//    public List<Match> showAll(){
+//        return cricketRepository.findAll();
+//    }
+//    @GetMapping("/delete")
+//    public String deleteAll(){
+//        try{
+//            cricketRepository.deleteAll();
+//            return "Success";
+//        }
+//        catch (Exception e){
+//            return "Try again";
+//        }
+//    }
 }

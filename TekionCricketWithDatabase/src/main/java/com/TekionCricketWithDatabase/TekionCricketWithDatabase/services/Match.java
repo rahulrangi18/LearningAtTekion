@@ -4,8 +4,11 @@ import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.TeamStatus
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,8 +18,8 @@ import java.util.Scanner;
 @ToString
 @Getter
 @Setter
-public
-class Match {
+@Service
+public class Match {
     @Id
     private String id;
     private Team team1 = new Team();
