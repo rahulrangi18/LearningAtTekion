@@ -15,7 +15,6 @@ public class MatchServiceImp implements MatchService {
 
     private final CricketRepository cricketRepository;
     private final Match match;
-
     public List<Match> viewByTeam(String teamName) {
         List<Match> matches = cricketRepository.findByTeam1Name(teamName);
         matches.addAll(cricketRepository.findByTeam2Name(teamName));
@@ -35,12 +34,6 @@ public class MatchServiceImp implements MatchService {
     public List<Match> showAll() {
         return cricketRepository.findAll();
     }
-//    public Match startMatch( ){
-//        Match match = new Match();
-//        cricketRepository.insert(match);
-//        return match;
-//    }
-
     public Match startMatch() {
         Match match = new Match();
         insertMatch(match);

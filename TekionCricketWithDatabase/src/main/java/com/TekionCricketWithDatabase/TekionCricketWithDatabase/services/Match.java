@@ -4,8 +4,6 @@ import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.TeamStatus
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Service;
@@ -20,8 +18,57 @@ import java.util.Scanner;
 @Setter
 @Service
 public class Match {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ArrayList<ArrayList<Character>> getScoreBoard1() {
+        return scoreBoard1;
+    }
+
+    public void setScoreBoard1(ArrayList<ArrayList<Character>> scoreBoard1) {
+        this.scoreBoard1 = scoreBoard1;
+    }
+
+    public ArrayList<ArrayList<Character>> getScoreBoard2() {
+        return scoreBoard2;
+    }
+
+    public void setScoreBoard2(ArrayList<ArrayList<Character>> scoreBoard2) {
+        this.scoreBoard2 = scoreBoard2;
+    }
+
+    public int getTargetScore() {
+        return targetScore;
+    }
+
+    public void setTargetScore(int targetScore) {
+        this.targetScore = targetScore;
+    }
+
     @Id
     private String id;
+
+    public Team getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1(Team team1) {
+        this.team1 = team1;
+    }
+
+    public Team getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(Team team2) {
+        this.team2 = team2;
+    }
+
     private Team team1 = new Team();
     private Team team2 = new Team();
     private ArrayList<ArrayList<Character>> scoreBoard1;

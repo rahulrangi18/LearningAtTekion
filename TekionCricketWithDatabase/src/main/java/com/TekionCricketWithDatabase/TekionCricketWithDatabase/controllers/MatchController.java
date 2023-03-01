@@ -59,25 +59,4 @@ public class MatchController {
     record TeamName(String name){
 
     }
-
-//    @GetMapping("/start")
-//    public Match startMatch( ){
-//        Match match = new Match();
-//        cricketRepository.insert(match);
-//        return match;
-//    }
-//    @GetMapping("/check")
-//    public List<Match> showAll(){
-//        return cricketRepository.findAll();
-//    }
-//    @GetMapping("/delete")
-//    public String deleteAll(){
-//        try{
-//            cricketRepository.deleteAll();
-//            return "Success";
-//        }
-//        catch (Exception e){
-//            return "Try again";
-//        }
-//    }
 }
