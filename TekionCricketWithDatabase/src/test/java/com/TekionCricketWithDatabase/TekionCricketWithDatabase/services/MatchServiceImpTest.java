@@ -1,17 +1,19 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+
+@SpringBootTest
 
 class MatchServiceImpTest {
 
@@ -19,8 +21,6 @@ class MatchServiceImpTest {
     private CricketRepository cricketRepository;
     @Autowired
     private MatchService matchService;
-    @Autowired
-    private Match match=matchService.startMatch();
 
     @BeforeEach
     void setUp() {

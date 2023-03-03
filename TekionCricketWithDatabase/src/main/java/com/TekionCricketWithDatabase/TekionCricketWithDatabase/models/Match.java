@@ -1,6 +1,7 @@
-package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
+package com.TekionCricketWithDatabase.TekionCricketWithDatabase.models;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Team;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.TeamStatus;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.Innings;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

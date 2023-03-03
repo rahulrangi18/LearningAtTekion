@@ -3,8 +3,7 @@ import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.Cricke
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;

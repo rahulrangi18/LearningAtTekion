@@ -1,5 +1,5 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.Match;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Team;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

@@ -1,7 +1,6 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.controllers;
 
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.Match;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;

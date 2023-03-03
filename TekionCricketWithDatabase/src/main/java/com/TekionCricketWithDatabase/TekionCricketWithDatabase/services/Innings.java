@@ -6,7 +6,7 @@ import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.TeamStatus
 
 import java.util.ArrayList;
 
-class Innings {
+public class Innings {
     private ArrayList<ArrayList<Character>> scoreBoard = new ArrayList<ArrayList<Character>>();
     private int overs = 0;
 
