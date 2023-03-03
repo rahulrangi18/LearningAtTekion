@@ -12,12 +12,20 @@ import java.util.Scanner;
 @Setter
 public
 class Team {
-    public String getName() {
+    public String getTeamName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setTeamName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
     }
 
     private String name;

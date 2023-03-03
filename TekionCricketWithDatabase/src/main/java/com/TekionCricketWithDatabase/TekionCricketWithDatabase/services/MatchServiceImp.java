@@ -1,5 +1,4 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
-
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +12,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MatchServiceImp implements MatchService {
-
-    private final CricketRepository cricketRepository;
     private final Match match;
+    private final CricketRepository cricketRepository;
+    private final Game game;
     public List<Match> viewByTeam(String teamName) {
         List<Match> matches = cricketRepository.findByTeam1Name(teamName);
         matches.addAll(cricketRepository.findByTeam2Name(teamName));
@@ -36,7 +35,7 @@ public class MatchServiceImp implements MatchService {
         return cricketRepository.findAll();
     }
     public Match startMatch() {
-        Match match = new Match();
+        game.startGame(match);
         insertMatch(match);
         return match;
     }
