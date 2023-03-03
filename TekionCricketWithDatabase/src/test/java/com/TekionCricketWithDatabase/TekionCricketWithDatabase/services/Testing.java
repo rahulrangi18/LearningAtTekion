@@ -1,5 +1,6 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
 
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,19 +26,19 @@ public class Testing {
     @Mock
     private CricketRepository cricketRepository;
 
-    @BeforeEach
-    public void setUp() {
-        matchServiceImp = new MatchServiceImp(cricketRepository, new PlayMatch());
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        matchServiceImp = new MatchServiceImp(cricketRepository, new Match());
+//    }
 
     @Test
     public void testViewByTeam() {
-        List<PlayMatch> matches = new ArrayList<>();
-        matches.add(new PlayMatch());
+        List<Match> matches = new ArrayList<>();
+        matches.add(new Match());
         when(cricketRepository.findByTeam1Name("India")).thenReturn(matches);
         when(cricketRepository.findByTeam2Name("India")).thenReturn(matches);
 
-        List<PlayMatch> result = matchServiceImp.viewByTeam("India");
+        List<Match> result = matchServiceImp.viewByTeam("India");
 
         verify(cricketRepository, times(1)).findByTeam1Name("India");
         verify(cricketRepository, times(1)).findByTeam2Name("India");
@@ -59,11 +60,11 @@ public class Testing {
 
     @Test
     public void testViewById() {
-        PlayMatch match = new PlayMatch();
+        Match match = new Match();
         when(cricketRepository.existsById("1")).thenReturn(true);
         when(cricketRepository.findById("1")).thenReturn(Optional.of(match));
 
-        PlayMatch result = matchServiceImp.viewById("1");
+        Match result = matchServiceImp.viewById("1");
 
         verify(cricketRepository, times(1)).findById("1");
         assertEquals(match, result);
@@ -83,11 +84,11 @@ public class Testing {
 
     @Test
     public void testShowAll() {
-        List<PlayMatch> matches = new ArrayList<>();
-        matches.add(new PlayMatch());
+        List<Match> matches = new ArrayList<>();
+        matches.add(new Match());
         when(cricketRepository.findAll()).thenReturn(matches);
 
-        List<PlayMatch> result = matchServiceImp.showAll();
+        List<Match> result = matchServiceImp.showAll();
 
         verify(cricketRepository, times(1)).findAll();
         assertEquals(matches, result);
@@ -95,10 +96,10 @@ public class Testing {
 
     @Test
     public void testStartMatch() {
-        PlayMatch match = new PlayMatch();
+        Match match = new Match();
         doNothing().when(cricketRepository).insert(match);
 
-        PlayMatch result = matchServiceImp.startMatch();
+        Match result = matchServiceImp.startMatch();
 
         verify(cricketRepository, times(1)).insert(match);
         assertEquals(match, result);

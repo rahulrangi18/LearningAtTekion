@@ -1,5 +1,5 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.PlayMatch;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
@@ -29,9 +29,9 @@ class MatchServiceImpTest {
 
     @Test
     void testViewByTeam() {
-        List<PlayMatch> matches = new ArrayList<>();
-        PlayMatch match1 = new PlayMatch();
-        PlayMatch match2 = new PlayMatch();
+        List<Match> matches = new ArrayList<>();
+        Match match1 = new Match();
+        Match match2 = new Match();
         match1.getTeam1().setName("India");
         match2.getTeam2().setName("India");
         matches.add(match1);
