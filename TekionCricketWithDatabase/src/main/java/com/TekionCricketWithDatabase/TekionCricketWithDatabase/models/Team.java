@@ -13,11 +13,11 @@ import java.util.Scanner;
 public
 class Team {
     public String getTeamName() {
-        return teamName;
+        return name;
     }
 
     public void setTeamName(String name) {
-        this.teamName = name;
+        this.name = name;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -28,7 +28,7 @@ class Team {
         this.players = players;
     }
 
-    private String teamName;
+    private String name;
 
     private int PlayerInTeam;
 
@@ -60,16 +60,16 @@ class Team {
         Scanner input = new Scanner(System.in);
         System.out.println("========================================");
         System.out.print("Enter Your Team Name: ");
-        this.teamName = input.next();
-        System.out.print("Enter No. of Players in " + this.teamName + " ̱̱Team (suggested: 11): ");
+        this.name = input.next();
+        System.out.print("Enter No. of Players in " + this.name + " ̱̱Team (suggested: 11): ");
         int n = input.nextInt();
         setPlayerInTeam(n);
-        System.out.println(this.teamName + " is Playing with " + getPlayerInTeam() + " Players\n");
+        System.out.println(this.name + " is Playing with " + getPlayerInTeam() + " Players\n");
         this.players = new ArrayList<Player>();
         float b = ((float) 40 / 100) * n;
         float c = ((float) 60 / 100) * n;
         for (int i = 1; i <= getPlayerInTeam(); i++) {
-            System.out.print("Enter Team " + this.teamName + " Player " + i + " Name: ");
+            System.out.print("Enter Team " + this.name + " Player " + i + " Name: ");
             String nameTmp = input.next();
             Role role;
             if (i == 1)

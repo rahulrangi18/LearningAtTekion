@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 public class Game {
-    public void startGame(Match match) {
+    public Match startGame(Match match) {
         match.setId(UUID.randomUUID().toString());
         Team team1=new Team();
         Team team2=new Team();
@@ -87,6 +87,7 @@ public class Game {
         } else {
             System.out.println("Match Draw");
         }
+        return match;
     }
 
     private double ballsToOvers(int balls) {

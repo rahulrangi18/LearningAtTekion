@@ -1,7 +1,9 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
+
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,8 +14,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MatchServiceImp implements MatchService {
-    private final Match match;
+    @Autowired
     private final CricketRepository cricketRepository;
+    @Autowired
+    private final Match match;
+
     private final Game game;
     public List<Match> viewByTeam(String teamName) {
         List<Match> matches = cricketRepository.findByTeam1Name(teamName);
@@ -36,6 +41,7 @@ public class MatchServiceImp implements MatchService {
     }
     public Match startMatch() {
         game.startGame(match);
+        //Match match = new Match();
         insertMatch(match);
         return match;
     }

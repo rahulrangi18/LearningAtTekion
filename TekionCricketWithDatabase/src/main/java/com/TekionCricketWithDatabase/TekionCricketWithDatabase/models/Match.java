@@ -24,6 +24,7 @@ public class Match {
     private ArrayList<ArrayList<Character>> scoreBoard1;
     private ArrayList<ArrayList<Character>> scoreBoard2;
     private int targetScore;
+    private String result;
     public String getId() {
         return id;
     }
@@ -73,17 +74,17 @@ public class Match {
         this.team2 = team2;
     }
 
-
-    public String viewByTeam(String teamName) {
-        if (teamName == null) {
-            throw new IllegalArgumentException("Team name cannot be null.");
-        }
-        if (!teamName.equals(team1.getTeamName()) && !teamName.equals(team2.getTeamName())) {
-            throw new IllegalArgumentException("Invalid team name.");
-        }
-        if (teamName.equals(team1.getTeamName())) {
-            return "All Good";
-        }
-        return teamName;
+    public int getTargetScore() {
+        return targetScore;
     }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+
 }
