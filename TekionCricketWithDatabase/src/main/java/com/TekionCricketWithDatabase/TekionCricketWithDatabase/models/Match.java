@@ -74,4 +74,16 @@ public class Match {
     }
 
 
+    public String viewByTeam(String teamName) {
+        if (teamName == null) {
+            throw new IllegalArgumentException("Team name cannot be null.");
+        }
+        if (!teamName.equals(team1.getTeamName()) && !teamName.equals(team2.getTeamName())) {
+            throw new IllegalArgumentException("Invalid team name.");
+        }
+        if (teamName.equals(team1.getTeamName())) {
+            return "All Good";
+        }
+        return teamName;
+    }
 }

@@ -30,9 +30,9 @@ public class Game {
         System.out.println("Teams are Ready for Toss\n");
         int choice = rand.nextInt(0, 2);
         if (choice == 0)
-            System.out.println(team1.getName() + " called for heads\n");
+            System.out.println(team1.getTeamName() + " called for heads\n");
         else
-            System.out.println(team1.getName() + " called for tails\n");
+            System.out.println(team1.getTeamName() + " called for tails\n");
 
         int toss = rand.nextInt(0, 2);
 
@@ -42,11 +42,11 @@ public class Game {
             System.out.println("It's Tails\n");
 
         if (choice == toss) {
-            System.out.println(team1.getName() + " Won the toss is batting first");
+            System.out.println(team1.getTeamName() + " Won the toss is batting first");
             team1.setStatus(TeamStatus.BATTING);
             team2.setStatus(TeamStatus.BOWLING);
         } else {
-            System.out.println(team2.getName() + " Won the toss is batting first");
+            System.out.println(team2.getTeamName() + " Won the toss is batting first");
             team2.setStatus(TeamStatus.BATTING);
             team1.setStatus(TeamStatus.BOWLING);
         }
@@ -59,18 +59,18 @@ public class Game {
         //targetScore = battingTeam.getRuns() + 1;
         int target = battingTeam.getRuns() + 1;
 
-        System.out.println(battingTeam.getName() + " is batting first");
+        System.out.println(battingTeam.getTeamName() + " is batting first");
         match.setScoreBoard2(innings1.getScoreBoard());
         //scoreBoard2 = innings1.getScoreBoard();
         System.out.println(innings1.getScoreBoard());
         System.out.println("Score = " + battingTeam.getRuns() + "/" + battingTeam.getWickets() + " in " + ballsToOvers(battingTeam.getBalls()));
         System.out.println();
 
-        System.out.println(bowlingTeam.getName() + " need " + target + " to win");
+        System.out.println(bowlingTeam.getTeamName() + " need " + target + " to win");
         System.out.println();
         battingTeam = team1.getStatus() == TeamStatus.BOWLING ? team1 : team2;
         bowlingTeam = team1.getStatus() == TeamStatus.BATTING ? team1 : team2;
-        System.out.println(battingTeam.getName() + " is batting now");
+        System.out.println(battingTeam.getTeamName() + " is batting now");
         Innings innings2 = new Innings(battingTeam, bowlingTeam, false, TotalOvr, team2.getPlayerInTeam());
         innings2.setTargetScore(target);
         innings2.startInnings();
@@ -81,9 +81,9 @@ public class Game {
         System.out.println();
 
         if (battingTeam.getStatus() == TeamStatus.WON) {
-            System.out.println(battingTeam.getName() + " won the match" + " by " + (10 - battingTeam.getWickets()) + " wickets");
+            System.out.println(battingTeam.getTeamName() + " won the match" + " by " + (10 - battingTeam.getWickets()) + " wickets");
         } else if (battingTeam.getStatus() == TeamStatus.LOST) {
-            System.out.println(bowlingTeam.getName() + " won the match" + " by " + (bowlingTeam.getRuns() - battingTeam.getRuns()) + " runs");
+            System.out.println(bowlingTeam.getTeamName() + " won the match" + " by " + (bowlingTeam.getRuns() - battingTeam.getRuns()) + " runs");
         } else {
             System.out.println("Match Draw");
         }

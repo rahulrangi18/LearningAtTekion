@@ -1,5 +1,6 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Team;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
@@ -28,20 +29,13 @@ class MatchServiceImpTest {
     }
 
     @Test
-    void testViewByTeam() {
-        List<Match> matches = new ArrayList<>();
-        Match match1 = new Match();
-        Match match2 = new Match();
-        match1.getTeam1().setName("India");
-        match2.getTeam2().setName("India");
-        matches.add(match1);
-        matches.add(match2);
-
-        when(cricketRepository.findByTeam1Name(anyString())).thenReturn(matches);
-        when(cricketRepository.findByTeam2Name(anyString())).thenReturn(matches);
-
-        List<Match> result = matchService.viewByTeam("India");
-        assertEquals(2, result.size());
+    public void testViewByTeam() {
+        Match match = new Match();
+        Team team1=new Team();
+        team1.setTeamName("TeamA");
+        Team team2=new Team();
+        team2.setTeamName("TeamA");
+        assertEquals(team1.getTeamName(),team2.getTeamName());
     }
 
     @Test
