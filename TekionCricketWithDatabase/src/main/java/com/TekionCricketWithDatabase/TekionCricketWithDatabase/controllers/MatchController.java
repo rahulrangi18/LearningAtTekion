@@ -48,14 +48,19 @@ public class MatchController {
             value = "/view-team",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Match> viewByTeam(@RequestBody @NotNull TeamName teamName){
-        return matchService.viewByTeam(teamName.name());
+            public List<Match> viewByTeam(@RequestBody @NotNull TeamName teamName){
+            return matchService.viewByTeam(teamName.name());
     }
 
     @DeleteMapping("/del")
     public void deleteMatches(){
         matchService.deleteAll();
     }
+//    //search using ElasticSearch
+//    @GetMapping("/search")
+//    public List<Match> searchMatch(@RequestParam(value = "query", required = true) String query) {
+//        return matchService.searchMatch(query);
+//    }
     record TeamName(String name){
 
     }

@@ -1,7 +1,7 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
 
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepositoryMongo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,31 +13,31 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MatchServiceImp implements MatchService {
+public abstract class MongoMatchServiceImp implements MatchService {
     @Autowired
-    private final CricketRepository cricketRepository;
+    private final CricketRepositoryMongo cricketRepositoryMongo;
     @Autowired
     private final Match match;
 
     private final Game game;
     public List<Match> viewByTeam(String teamName) {
-        List<Match> matches = cricketRepository.findByTeam1Name(teamName);
-        matches.addAll(cricketRepository.findByTeam2Name(teamName));
+        List<Match> matches = cricketRepositoryMongo.findByTeam1Name(teamName);
+        matches.addAll(cricketRepositoryMongo.findByTeam2Name(teamName));
         if (matches.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found");
         return matches;
     }
 
     public Match viewById(String id) {
-        if (cricketRepository.existsById(id)) {
-            Optional<Match> match = cricketRepository.findById(id);
+        if (cricketRepositoryMongo.existsById(id)) {
+            Optional<Match> match = cricketRepositoryMongo.findById(id);
             return match.get();
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found");
     }
 
     public List<Match> showAll() {
-        return cricketRepository.findAll();
+        return cricketRepositoryMongo.findAll();
     }
     public Match startMatch() {
         game.startGame(match);
@@ -48,14 +48,14 @@ public class MatchServiceImp implements MatchService {
 
     public void insertMatch(Match match) {
         try {
-            cricketRepository.insert(match);
-            System.out.println("Added to Database");
+            cricketRepositoryMongo.insert(match);
+            System.out.println("Added to MongoDB Database");
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Adding to db failed");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Adding to MongoDB failed");
         }
     }
 
     public void deleteAll() {
-        cricketRepository.deleteAll();
+        cricketRepositoryMongo.deleteAll();
     }
 }
