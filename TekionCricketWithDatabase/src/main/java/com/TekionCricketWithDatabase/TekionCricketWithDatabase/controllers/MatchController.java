@@ -1,11 +1,12 @@
 package com.TekionCricketWithDatabase.TekionCricketWithDatabase.controllers;
 
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.MatchMongoService;
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,10 @@ public class MatchController {
 
     @Autowired
     private MatchService matchService;
-    //private CricketRepository cricketRepository;
+
+    // Elasticsearch
+  //  @Autowired
+   // private MatchElasticsearchService matchElasticsearchService;
 
     @GetMapping("/")
     public String mainPage(){
@@ -31,14 +35,18 @@ public class MatchController {
     }
 
     @GetMapping("/check-all")
-    public List<Match> showAll(){
+    public Page<Match> showAll(){
         return matchService.showAll();
     }
 
     @GetMapping("/start")
     public Match startMatch(){
-        return matchService.startMatch();
+        Match match = matchService.startMatch();
+        // Elasticsearch
+        //matchElasticsearchService.indexMatch(match);
+        return match;
     }
+
     @GetMapping("/view/{id}")
     public Match viewById(@PathVariable("id")String id){
         return matchService.viewById(id);
@@ -48,20 +56,15 @@ public class MatchController {
             value = "/view-team",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-            public List<Match> viewByTeam(@RequestBody @NotNull TeamName teamName){
-            return matchService.viewByTeam(teamName.name());
+    public Page<Match> viewByTeam(@RequestBody @NotNull TeamName teamName){
+        return matchService.viewByTeam(teamName.name());
     }
 
     @DeleteMapping("/del")
     public void deleteMatches(){
         matchService.deleteAll();
     }
-//    //search using ElasticSearch
-//    @GetMapping("/search")
-//    public List<Match> searchMatch(@RequestParam(value = "query", required = true) String query) {
-//        return matchService.searchMatch(query);
-//    }
-    record TeamName(String name){
 
-    }
+    record TeamName(String name){}
+
 }

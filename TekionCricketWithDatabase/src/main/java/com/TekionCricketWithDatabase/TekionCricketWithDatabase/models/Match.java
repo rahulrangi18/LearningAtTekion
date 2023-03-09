@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Document(collection = "tekionMatches")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "tekionMatches")
 @ToString
 @Getter
 @Setter

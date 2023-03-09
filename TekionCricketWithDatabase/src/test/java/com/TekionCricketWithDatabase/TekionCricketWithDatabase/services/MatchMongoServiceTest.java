@@ -11,16 +11,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepositoryMongo;
+import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.MongoCricketRepository;
 
-class MatchServiceTest {
+class MatchMongoServiceTest {
 
     @Mock
-    private CricketRepositoryMongo cricketRepository;
+    private MongoCricketRepository mongoCricketRepository;
 
     @Mock
     private MatchService matchService;
@@ -38,51 +39,51 @@ class MatchServiceTest {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
 
-        when(cricketRepository.findByTeam1Name(any())).thenReturn(matches);
-        when(cricketRepository.findByTeam2Name(any())).thenReturn(matches);
+        when(mongoCricketRepository.findByTeam1Name(any())).thenReturn(matches);
+        when(mongoCricketRepository.findByTeam2Name(any())).thenReturn(matches);
 
-        List<Match> result = matchService.viewByTeam("testTeam");
+        Page<Match> result = matchService.viewByTeam("testTeam");
 
-        //assertEquals(matches, result);
+        assertEquals(matches, result);
     }
 
     @Test
     void testViewByTeamNoMatchFound() {
-        when(cricketRepository.findByTeam1Name(any())).thenReturn(new ArrayList<>());
-        when(cricketRepository.findByTeam2Name(any())).thenReturn(new ArrayList<>());
+        when(mongoCricketRepository.findByTeam1Name(any())).thenReturn(new ArrayList<>());
+        when(mongoCricketRepository.findByTeam2Name(any())).thenReturn(new ArrayList<>());
 
         ResponseStatusException exception =
                 org.junit.jupiter.api.Assertions.assertThrows(
                         ResponseStatusException.class, () -> matchService.viewByTeam("testTeam"));
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
-        //assertEquals("Match not found", exception.getReason());
+        assertEquals("Match not found", exception.getReason());
     }
 
     @Test
     void testViewById() {
         String id = "testId";
 
-        when(cricketRepository.existsById(id)).thenReturn(true);
-        when(cricketRepository.findById(id)).thenReturn(Optional.of(match));
+        when(mongoCricketRepository.existsById(id)).thenReturn(true);
+        when(mongoCricketRepository.findById(id)).thenReturn(Optional.of(match));
 
         Match result = matchService.viewById(id);
 
-        //assertEquals(match, result);
+        assertEquals(match, result);
     }
 
     @Test
     void testViewByIdNoMatchFound() {
         String id = "testId";
 
-        when(cricketRepository.existsById(id)).thenReturn(false);
+        when(mongoCricketRepository.existsById(id)).thenReturn(false);
 
         ResponseStatusException exception =
                 org.junit.jupiter.api.Assertions.assertThrows(
                         ResponseStatusException.class, () -> matchService.viewById(id));
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
-        //assertEquals("Match not found", exception.getReason());
+        assertEquals("Match not found", exception.getReason());
     }
 
     @Test
@@ -90,11 +91,11 @@ class MatchServiceTest {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
 
-        when(cricketRepository.findAll()).thenReturn(matches);
+        when(mongoCricketRepository.findAll()).thenReturn(matches);
 
-        List<Match> result = matchService.showAll();
+        Page<Match> result = matchService.showAll();
 
-        //assertEquals(matches, result);
+        assertEquals(matches, result);
     }
 
     @Test
