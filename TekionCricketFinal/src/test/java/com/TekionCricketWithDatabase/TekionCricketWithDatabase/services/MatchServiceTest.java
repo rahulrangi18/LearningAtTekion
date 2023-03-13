@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -36,7 +35,6 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Team")
     void testViewByTeam() {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
@@ -50,7 +48,6 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Team for No Match Found")
     void testViewByTeamNoMatchFound() {
         when(cricketRepository.findByTeam1Name(any())).thenReturn(new ArrayList<>());
         when(cricketRepository.findByTeam2Name(any())).thenReturn(new ArrayList<>());
@@ -64,7 +61,6 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Id")
     void testViewById() {
         String id = "testId";
 
@@ -77,7 +73,6 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Id if No match found")
     void testViewByIdNoMatchFound() {
         String id = "testId";
 
@@ -92,7 +87,6 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function for Show all")
     void testShowAll() {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
@@ -105,13 +99,11 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function for View All")
     void testInsertMatch() {
         matchService.insertMatch(match);
     }
 
     @Test
-    @DisplayName("Test function for delete all")
     void testDeleteAll() {
         matchService.deleteAll();
     }
