@@ -1,13 +1,6 @@
 package com.TekionCricketFinal.TekionCricketFinal.models;
-import com.TekionCricketFinal.TekionCricketFinal.models.Role;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
 @Data
 public class Player {
     private String name;

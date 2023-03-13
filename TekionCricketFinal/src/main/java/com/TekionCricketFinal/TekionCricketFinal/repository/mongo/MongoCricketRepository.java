@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface MongoCricketRepository extends MongoRepository<Match,String > {
     List<Match> findByTeam1Name(final String name);
     List<Match> findByTeam2Name(final String name);

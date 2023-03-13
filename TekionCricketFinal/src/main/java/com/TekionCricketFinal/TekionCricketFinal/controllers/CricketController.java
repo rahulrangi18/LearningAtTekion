@@ -13,11 +13,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class MatchController {
+public class CricketController {
 
     @Autowired
     private MatchService matchService;
-    //private CricketRepository cricketRepository;
 
     @GetMapping("/")
     public String mainPage(){
@@ -52,9 +51,25 @@ public class MatchController {
         return matchService.viewByTeam(teamName.name());
     }
 
+    @PostMapping(value = "/partial-search",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Match> partialSearch(@RequestBody @NotNull TeamName teamName){
+        return matchService.partialSearch(teamName.name());
+    }
     @DeleteMapping("/del")
     public void deleteMatches(){
         matchService.deleteAll();
+    }
+    // testing
+    @GetMapping("/es-all")
+    public Page<Match> showAllES(){
+        return matchService.showAllES();
+    }
+    // testing
+    @GetMapping("/mongo-all")
+    public Page<Match> showAllMongo(){
+        return matchService.showAllMongo();
     }
     record TeamName(String name){
 

@@ -77,4 +77,5 @@ public class MatchServiceImp implements MatchService {
     public List<Match> partialSearch(String name) {
         return matchElasticSearchService.partialSearch(name);
     }
+
 }

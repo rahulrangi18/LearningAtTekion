@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Document(collection = "tekionMatches")
-@ToString
-@Getter
-@Setter
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "tekionMatches")
+@Data
 @Component
 @Builder
 @AllArgsConstructor
@@ -47,10 +46,6 @@ public class Match {
 
     public void setScoreBoard2(ArrayList<ArrayList<Character>> scoreBoard2) {
         this.scoreBoard2 = scoreBoard2;
-    }
-
-    public int getTargetScore(int i) {
-        return targetScore;
     }
 
     public void setTargetScore(int targetScore) {

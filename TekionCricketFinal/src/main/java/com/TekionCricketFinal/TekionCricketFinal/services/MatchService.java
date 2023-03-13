@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
-
 public interface MatchService {
     Page<Match> viewByTeam(String teamName);
     Match viewById(String id);
