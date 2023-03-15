@@ -51,7 +51,11 @@ public class Innings {
     public void setTargetScore(int targetScore) {
         this.targetScore = targetScore;
     }
-
+    public Innings(Team battingTeam, Team bowlingTeam, boolean isFirstInnings) {
+        this.isFirstInnings = isFirstInnings;
+        this.battingTeam = battingTeam;
+        this.bowlingTeam = bowlingTeam;
+    }
     public void startInnings() {
         // start the innings
         while (overs < TotalOver) {

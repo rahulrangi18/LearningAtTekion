@@ -3,6 +3,7 @@ package com.TekionCricketFinal.TekionCricketFinal.services;
 import com.TekionCricketFinal.TekionCricketFinal.models.Match;
 import com.TekionCricketFinal.TekionCricketFinal.models.Team;
 import com.TekionCricketFinal.TekionCricketFinal.models.TeamStatus;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,7 +13,16 @@ import java.util.UUID;
 
 
 @Service
+@Data
 public class Game {
+    private Match match;
+
+    public Game(){
+
+    }
+    public Game(Match m){
+       this.match=m;
+    }
     public Match startGame(Match match,Team t1,Team t2) {
         match.setId(UUID.randomUUID().toString());
         Team team1=t1;

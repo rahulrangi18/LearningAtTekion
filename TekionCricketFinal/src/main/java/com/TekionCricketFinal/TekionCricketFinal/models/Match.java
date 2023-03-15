@@ -13,7 +13,6 @@ import java.util.ArrayList;
 @Component
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class Match {
     @Id
     private String id;
@@ -22,4 +21,16 @@ public class Match {
     private ArrayList<ArrayList<Character>> scoreBoard1;
     private ArrayList<ArrayList<Character>> scoreBoard2;
     private int targetScore;
+
+    public Match(){
+
+    }
+
+    public Match(Team t1, Team t2, ArrayList<ArrayList<Character>> sb1, ArrayList<ArrayList<Character>> sb2, int ts) {
+        this.team1=t1;
+        this.team2=t2;
+        this.scoreBoard1=sb1;
+        this.scoreBoard2=sb2;
+        this.targetScore=ts;
+    }
 }

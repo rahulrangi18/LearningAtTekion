@@ -35,6 +35,4 @@ public class MatchElasticSearchService {
     public List<Match> partialSearch(String name){
         return elasticCricketRepository.findByPartialText(name, Pageable.unpaged()).getContent();
     }
-
-
 }

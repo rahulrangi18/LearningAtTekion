@@ -2,6 +2,7 @@ package com.TekionCricketFinal.TekionCricketFinal.services;
 
 import com.TekionCricketFinal.TekionCricketFinal.models.Match;
 import com.TekionCricketFinal.TekionCricketFinal.models.Team;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
