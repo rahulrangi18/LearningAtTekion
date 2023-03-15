@@ -54,9 +54,10 @@ class Team {
     public void setStatus(TeamStatus status) {
         this.status = status;
     }
+    public Team(){
 
-    public Team() {
-        // create random team name and 11 random players and add them to the team
+    }
+    public Team(boolean start) {
         Scanner input = new Scanner(System.in);
         System.out.println("========================================");
         System.out.print("Enter Your Team Name: ");

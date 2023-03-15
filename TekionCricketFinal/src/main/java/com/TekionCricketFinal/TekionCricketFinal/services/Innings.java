@@ -54,9 +54,8 @@ public class Innings {
 
     public void startInnings() {
         // start the innings
-        while (overs < TotalOver) {// play the over
+        while (overs < TotalOver) {
             for (int i = 0; i < 6; i++) {
-                // play the ball
                 int runs = RunsPerBall.getRuns(this.battingTeam.getPlayers().get(this.battingTeam.getWickets()));
                 if (runs != -1) {
                     this.battingTeam.getPlayers().get(this.battingTeam.getWickets()).setRuns(runs);

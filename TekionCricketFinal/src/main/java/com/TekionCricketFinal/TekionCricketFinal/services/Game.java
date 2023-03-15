@@ -13,10 +13,10 @@ import java.util.UUID;
 
 @Service
 public class Game {
-    public Match startGame(Match match) {
+    public Match startGame(Match match,Team t1,Team t2) {
         match.setId(UUID.randomUUID().toString());
-        Team team1=new Team();
-        Team team2=new Team();
+        Team team1=t1;
+        Team team2=t2;
         match.setTeam1(team1);
         match.setTeam2(team2);
         match.setScoreBoard1(new ArrayList<ArrayList<Character>>());

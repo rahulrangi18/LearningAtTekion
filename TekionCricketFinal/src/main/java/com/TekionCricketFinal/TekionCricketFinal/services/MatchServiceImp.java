@@ -1,6 +1,7 @@
 package com.TekionCricketFinal.TekionCricketFinal.services;
 
 import com.TekionCricketFinal.TekionCricketFinal.models.Match;
+import com.TekionCricketFinal.TekionCricketFinal.models.Team;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,7 +51,10 @@ public class MatchServiceImp implements MatchService {
 
     @Override
     public Match startMatch() {
-        game.startGame(match);
+        boolean start=true;
+        Team team1=new Team(start);
+        Team team2=new Team(start);
+        game.startGame(match,team1,team2);
         insertMatch(match);
         return match;
     }

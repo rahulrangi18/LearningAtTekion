@@ -21,7 +21,6 @@ public class MatchElasticSearchService {
         elasticCricketRepository.deleteAll();
     }
     public Page<Match> findByTeam(String team){
-//        return null;
         return elasticCricketRepository.findByTeam1_NameOrTeam2_Name(team , team , Pageable.ofSize(2));
     }
     public Page<Match> findAll(){
