@@ -11,13 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class MatchMongoService {
-    @Autowired
+
     private final MongoCricketRepository mongoCricketRepository;
-    @Autowired
-    private final Match match;
-
-    private final Game game;
-
     public void save(Match match){
         mongoCricketRepository.insert(match);
     }

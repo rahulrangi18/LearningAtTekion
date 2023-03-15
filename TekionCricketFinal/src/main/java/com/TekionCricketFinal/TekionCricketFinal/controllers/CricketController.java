@@ -14,20 +14,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class CricketController {
-
     @Autowired
     private MatchService matchService;
-
-    @GetMapping("/")
-    public String mainPage(){
-        String A="Namashkar Main Aakash Chopra, Swagat krta hu hamare 'Tekion Premier League (TPL) me'";
-        String B="Intructions:-";
-        String C="1.) /start -> Play the match";
-        String D="2.) /check -> show all data";
-        String E="4.) /del -> delete all";
-        String finalMsg=A+"\n"+B+"\n"+C+"\n"+D+"\n"+E;
-        return finalMsg;
-    }
 
     @GetMapping("/check-all")
     public Page<Match> showAll(){
@@ -66,12 +54,10 @@ public class CricketController {
     public Page<Match> showAllES(){
         return matchService.showAllES();
     }
-    // testing
     @GetMapping("/mongo-all")
     public Page<Match> showAllMongo(){
         return matchService.showAllMongo();
     }
     record TeamName(String name){
-
     }
 }

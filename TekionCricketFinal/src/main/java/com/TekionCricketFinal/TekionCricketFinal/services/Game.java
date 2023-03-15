@@ -56,7 +56,7 @@ public class Game {
 
         Innings innings1 = new Innings(battingTeam, bowlingTeam, true, TotalOvr, team1.getPlayerInTeam());
         innings1.startInnings();
-        //match.getTargetScore(battingTeam.getRuns() + 1);
+        //match.(battingTeam.getRuns() + 1);
         //targetScore = battingTeam.getRuns() + 1;
         int target = battingTeam.getRuns() + 1;
 
@@ -74,6 +74,7 @@ public class Game {
         System.out.println(battingTeam.getTeamName() + " is batting now");
         Innings innings2 = new Innings(battingTeam, bowlingTeam, false, TotalOvr, team2.getPlayerInTeam());
         innings2.setTargetScore(target);
+        match.setTargetScore(target);
         innings2.startInnings();
         match.setScoreBoard1(innings2.getScoreBoard());
         //scoreBoard1 = innings2.getScoreBoard();

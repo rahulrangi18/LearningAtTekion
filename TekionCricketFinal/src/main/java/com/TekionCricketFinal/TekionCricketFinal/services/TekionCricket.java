@@ -6,8 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class TekionCricket
 {
-    @Contract(" -> new")
-    public static @NotNull Match startMatch(){
+    public static Match startMatch(){
 
         return new Match();
     }

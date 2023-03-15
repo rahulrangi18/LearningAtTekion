@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.0.4'
+	id 'org.springframework.boot' version '3.0.1'
 	id 'io.spring.dependency-management' version '1.1.0'
 }
 
@@ -20,26 +20,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.0.2'
 	implementation 'org.jetbrains:annotations:23.0.0'
-	implementation 'org.jetbrains:annotations:23.0.0'
 	compileOnly 'org.projectlombok:lombok:1.18.24'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 	testCompileOnly 'org.projectlombok:lombok:1.18.24'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation 'com.github.javafaker:javafaker:1.0.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.elasticsearch.plugin:x-pack-sql-jdbc:6.8.23'
 	implementation 'org.springframework.data:spring-data-elasticsearch:5.0.2'
-	implementation 'org.projectlombok:lombok:1.18.20'
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
