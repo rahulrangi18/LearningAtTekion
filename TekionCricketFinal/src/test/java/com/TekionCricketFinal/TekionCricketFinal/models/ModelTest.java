@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 
 public class ModelTest {
 
@@ -88,4 +91,9 @@ public class ModelTest {
         Game game = new Game(match);
         Assertions.assertEquals(game.getMatch(), match);
     }
+    @Test
+    public void testEnumValues() {
+        assertThat(TeamStatus.allValues()).containsExactly(TeamStatus.BATTING, TeamStatus.BOWLING, TeamStatus.WON, TeamStatus.LOST, TeamStatus.DRAW);
+    }
+
 }

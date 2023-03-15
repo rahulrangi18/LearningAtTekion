@@ -57,6 +57,9 @@ class Team {
     public Team(){
 
     }
+    public Team(String teamName){
+        this.name=teamName;
+    }
     public Team(boolean start) {
         Scanner input = new Scanner(System.in);
         System.out.println("========================================");
