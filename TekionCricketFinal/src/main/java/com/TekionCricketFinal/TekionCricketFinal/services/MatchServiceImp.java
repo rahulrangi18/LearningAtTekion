@@ -2,7 +2,6 @@ package com.TekionCricketFinal.TekionCricketFinal.services;
 
 import com.TekionCricketFinal.TekionCricketFinal.models.Match;
 import com.TekionCricketFinal.TekionCricketFinal.models.Team;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,9 +19,13 @@ public class MatchServiceImp implements MatchService {
     @Autowired
     private MatchMongoService matchMongoService;
     @Autowired
-    private final Match match;
+    private Match match;
     @Autowired
-    private final Game game;
+    private Game game;
+
+    public MatchServiceImp(MatchElasticSearchService matchElasticSearchService, MatchMongoService matchMongoService, Match match, Game game) {
+    }
+
     @Override
     public Page<Match> viewByTeam(String teamName) {
         Page<Match> matches = matchElasticSearchService.findByTeam(teamName);

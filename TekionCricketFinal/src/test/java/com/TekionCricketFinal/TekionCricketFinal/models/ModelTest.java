@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class TekionCricketFinalTest {
+public class ModelTest {
 
     @Test
     public void testMatchClass() {
