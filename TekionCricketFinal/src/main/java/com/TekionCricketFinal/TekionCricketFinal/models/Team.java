@@ -12,48 +12,16 @@ import java.util.Scanner;
 @Setter
 public
 class Team {
-    public String getTeamName() {
-        return name;
-    }
-
-    public void setTeamName(String name) {
-        this.name = name;
-    }
-
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
-    }
 
     private String name;
-
+    private String teamId;
+    private String matchIdForTeam;
     private int PlayerInTeam;
-
-    public int getPlayerInTeam() {
-        return PlayerInTeam;
-    }
-
-    public void setPlayerInTeam(int playerInTeam) {
-        this.PlayerInTeam = playerInTeam;
-    }
-
-
     private ArrayList<Player> players;
     private TeamStatus status;
     private int runs = 0;
     private int wickets = 0;
     private int balls = 0;
-
-    public TeamStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TeamStatus status) {
-        this.status = status;
-    }
     public Team(){
 
     }
@@ -70,8 +38,8 @@ class Team {
         setPlayerInTeam(n);
         System.out.println(this.name + " is Playing with " + getPlayerInTeam() + " Players\n");
         this.players = new ArrayList<Player>();
-        float b = ((float) 40 / 100) * n;
-        float c = ((float) 60 / 100) * n;
+        float b = ((float) 60 / 100) * n;
+        float c = ((float) 80 / 100) * n;
         for (int i = 1; i <= getPlayerInTeam(); i++) {
             System.out.print("Enter Team " + this.name + " Player " + i + " Name: ");
             String nameTmp = input.next();
@@ -88,17 +56,14 @@ class Team {
             this.players.add(player);
         }
     }
-
-    public String setTeamId() {
-        return teamId;
+    public void addPlayer(Player player) {
+        this.players.add(player);
+    }
+    public String getTeamName() {
+        return name;
     }
 
-    public void setTeamId(String id) {
-        this.teamId = id;
+    public void setTeamName(String name) {
+        this.name = name;
     }
-
-    private String teamId;
-
-    private String matchIdForTeam;
-
 }

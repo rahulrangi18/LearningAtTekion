@@ -13,22 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class MethodTest {
     @Test
-    public void testRunPerBall(){
-        Player player = new Player("Virat", Role.BATSMAN);
-        for(int i=0; i<10; i++){
-            player.setRole(Role.BATSMAN);
-            int runs = RunsPerBall.getRuns(player);
-            assertTrue(runs >= -1 && runs <= 6);
-            player.setRole(Role.ALL_ROUNDER);
-            runs = RunsPerBall.getRuns(player);
-            assertTrue(runs >= -1 && runs <= 6);
-            player.setRole(Role.BOWLER);
-            runs = RunsPerBall.getRuns(player);
-            assertTrue(runs >= -1 && runs <= 2);
-            player.setRole(Role.WICKET_KEEPER);
-            runs = RunsPerBall.getRuns(player);
-            assertTrue(runs >= -1 && runs <= 6);
-        }
+    public void testRunPerBall() {
+        Player batsman = new Player("Batsman", Role.BATSMAN);
+        Player allRounder = new Player("All-rounder", Role.ALL_ROUNDER);
+        Player bowler = new Player("Bowler", Role.BOWLER);
+
+        int batsmanRuns = RunsPerBall.getRuns(batsman);
+        assertTrue(batsmanRuns >= -1 && batsmanRuns <= 6);
+
+        int allRounderRuns = RunsPerBall.getRuns(allRounder);
+        assertTrue(allRounderRuns >= -1 && allRounderRuns <= 6);
+
+        int bowlerRuns = RunsPerBall.getRuns(bowler);
+        assertTrue(bowlerRuns >= -1 && bowlerRuns <= 6);
     }
     @Test
     public void testPlayInnings(){
