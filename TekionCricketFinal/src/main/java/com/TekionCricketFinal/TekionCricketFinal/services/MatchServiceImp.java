@@ -21,9 +21,9 @@ public class MatchServiceImp implements MatchService {
     @Autowired
     private Match match;
     @Autowired
-    private Game game;
+    private StartGame startGame;
 
-    public MatchServiceImp(MatchElasticSearchService matchElasticSearchService, MatchMongoService matchMongoService, Match match, Game game) {
+    public MatchServiceImp(MatchElasticSearchService matchElasticSearchService, MatchMongoService matchMongoService, Match match, StartGame startGame) {
     }
 
     @Override
@@ -58,7 +58,7 @@ public class MatchServiceImp implements MatchService {
         boolean start=true;
         Team team1=new Team(start);
         Team team2=new Team(start);
-        game.startGame(match,team1,team2);
+        startGame.startGame(match,team1,team2);
         insertMatch(match);
         return match;
     }

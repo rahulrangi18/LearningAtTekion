@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 @ToString
 @Getter
@@ -41,6 +42,7 @@ class Team {
         float b = ((float) 60 / 100) * n;
         float c = ((float) 80 / 100) * n;
         for (int i = 1; i <= getPlayerInTeam(); i++) {
+            String playerId= UUID.randomUUID().toString();
             System.out.print("Enter Team " + this.name + " Player " + i + " Name: ");
             String nameTmp = input.next();
             Role role;
@@ -52,8 +54,9 @@ class Team {
                 role = Role.ALL_ROUNDER;
             else
                 role = Role.BOWLER;
-            Player player = new Player(nameTmp, role);
-            this.players.add(player);
+
+            Player player = new Player(nameTmp, role,playerId);
+            addPlayer(player);
         }
     }
     public void addPlayer(Player player) {

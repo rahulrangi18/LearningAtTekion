@@ -14,13 +14,13 @@ import java.util.UUID;
 
 @Service
 @Data
-public class Game {
+public class StartGame {
     private Match match;
 
-    public Game(){
+    public StartGame(){
 
     }
-    public Game(Match m){
+    public StartGame(Match m){
        this.match=m;
     }
     public Match startGame(Match match,Team team1,Team team2) {

@@ -1,6 +1,6 @@
 package com.TekionCricketFinal.TekionCricketFinal.models;
 
-import com.TekionCricketFinal.TekionCricketFinal.services.Game;
+import com.TekionCricketFinal.TekionCricketFinal.services.StartGame;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -86,8 +86,8 @@ public class ModelTest {
         inning1.add('6');
         scoreBoard1.add(inning1);
         Match match = new Match(team1, team2, new ArrayList<>(), new ArrayList<>(), 0);
-        Game game = new Game(match);
-        Assertions.assertEquals(game.getMatch(), match);
+        StartGame startGame = new StartGame(match);
+        Assertions.assertEquals(startGame.getMatch(), match);
     }
     @Test
     public void testEnumValues() {

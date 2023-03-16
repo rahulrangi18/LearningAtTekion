@@ -88,12 +88,9 @@ class MatchServiceTest {
     void testShowAll() {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
-
         when(mongoCricketRepository.findAll()).thenReturn(matches);
-
         Page<Match> result = matchService.showAll();
-
-        //assertEquals(matches, result);
+        assertEquals(matches, result);
     }
 
     @Test
