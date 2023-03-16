@@ -1,6 +1,7 @@
 package com.TekionCricketFinal.TekionCricketFinal.services;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import com.TekionCricketFinal.TekionCricketFinal.models.Player;
 import com.TekionCricketFinal.TekionCricketFinal.models.Role;
@@ -14,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MethodTest {
     @Test
     public void testRunPerBall() {
-        Player batsman = new Player("Batsman", Role.BATSMAN);
-        Player allRounder = new Player("All-rounder", Role.ALL_ROUNDER);
-        Player bowler = new Player("Bowler", Role.BOWLER);
+        Player batsman = new Player("Batsman", Role.BATSMAN, UUID.randomUUID().toString());
+        Player allRounder = new Player("All-rounder", Role.ALL_ROUNDER,UUID.randomUUID().toString());
+        Player bowler = new Player("Bowler", Role.BOWLER,UUID.randomUUID().toString());
 
         int batsmanRuns = RunsPerBall.getRuns(batsman);
         assertTrue(batsmanRuns >= -1 && batsmanRuns <= 6);

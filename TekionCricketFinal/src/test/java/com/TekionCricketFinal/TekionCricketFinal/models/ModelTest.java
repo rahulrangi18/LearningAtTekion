@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.UUID;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ModelTest {
@@ -34,9 +36,9 @@ public class ModelTest {
 
     @Test
     public void testPlayerClass() {
-        Player player = new Player("John", Role.ALL_ROUNDER);
+        Player player = new Player("John", Role.ALL_ROUNDER, UUID.randomUUID().toString());
         Assertions.assertEquals(player.getPlayerName(), "John");
-        Assertions.assertEquals(player.getRole(), Role.ALL_ROUNDER);
+        Assertions.assertEquals(player.getRole(), Role.ALL_ROUNDER,UUID.randomUUID().toString());
         Assertions.assertEquals(player.getRuns(), 0);
         Assertions.assertEquals(player.getWickets(), 0);
         Assertions.assertEquals(player.getBalls(), 0);
@@ -48,7 +50,7 @@ public class ModelTest {
         team.setTeamName("India");
         team.setPlayerInTeam(11);
         ArrayList<Player> players = new ArrayList<>();
-        Player player = new Player("Virat", Role.ALL_ROUNDER);
+        Player player = new Player("Virat", Role.ALL_ROUNDER,UUID.randomUUID().toString());
         players.add(player);
         team.setPlayers(players);
         team.setStatus(TeamStatus.BATTING);
