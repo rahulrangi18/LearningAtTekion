@@ -2,6 +2,8 @@ package com.TekionCricketFinal.TekionCricketFinal.models;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +17,21 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class Match {
     @Id
-    private String id;
+    private String matchId;
+
+    @Field(type = FieldType.Object, name = "team1")
     private Team team1;
+
+    @Field(type = FieldType.Object, name = "team2")
     private Team team2;
+
+    @Field(type = FieldType.Nested)
     private ArrayList<ArrayList<Character>> scoreBoard1;
+
+    @Field(type = FieldType.Nested)
     private ArrayList<ArrayList<Character>> scoreBoard2;
+
+    @Field(type = FieldType.Integer, name = "targetScore")
     private int targetScore;
 
     public Match(){

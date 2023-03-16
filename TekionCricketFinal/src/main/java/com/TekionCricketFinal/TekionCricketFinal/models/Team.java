@@ -99,4 +99,6 @@ class Team {
 
     private String teamId;
 
+    private String matchIdForTeam;
+
 }

@@ -23,12 +23,15 @@ public class Game {
     public Game(Match m){
        this.match=m;
     }
-    public Match startGame(Match match,Team t1,Team t2) {
-        match.setId(UUID.randomUUID().toString());
-        Team team1=t1;
-        Team team2=t2;
+    public Match startGame(Match match,Team team1,Team team2) {
+        String matchId=UUID.randomUUID().toString();
+        match.setMatchId(matchId);
         match.setTeam1(team1);
         match.setTeam2(team2);
+        team1.setTeamId(UUID.randomUUID().toString());
+        team1.setMatchIdForTeam(matchId);
+        team2.setTeamId(UUID.randomUUID().toString());
+        team2.setMatchIdForTeam(matchId);
         match.setScoreBoard1(new ArrayList<ArrayList<Character>>());
         match.setScoreBoard2(new ArrayList<ArrayList<Character>>());
         Scanner input = new Scanner(System.in);

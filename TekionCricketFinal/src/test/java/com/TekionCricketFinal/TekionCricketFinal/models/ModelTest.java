@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
-
 public class ModelTest {
 
     @Test
@@ -26,7 +24,7 @@ public class ModelTest {
         inning1.add('6');
         scoreBoard1.add(inning1);
         Match match = new Match("1", team1, null, scoreBoard1, null, 100);
-        Assertions.assertEquals(match.getId(), "1");
+        Assertions.assertEquals(match.getMatchId(), "1");
         Assertions.assertEquals(match.getTeam1(), team1);
         Assertions.assertNull(match.getTeam2());
         Assertions.assertEquals(match.getScoreBoard1(), scoreBoard1);
@@ -37,7 +35,7 @@ public class ModelTest {
     @Test
     public void testPlayerClass() {
         Player player = new Player("John", Role.ALL_ROUNDER);
-        Assertions.assertEquals(player.getName(), "John");
+        Assertions.assertEquals(player.getPlayerName(), "John");
         Assertions.assertEquals(player.getRole(), Role.ALL_ROUNDER);
         Assertions.assertEquals(player.getRuns(), 0);
         Assertions.assertEquals(player.getWickets(), 0);
