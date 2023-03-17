@@ -16,4 +16,5 @@ public interface ElasticCricketRepository extends ElasticsearchRepository<Match,
 
     @Query("{\"bool\": {\"should\": [{\"match\": {\"team1.name\": \"?0\"}},{\"match\": {\"team2.name\": \"?0\"}}]}}")
     Page<Match> findByExactText(String name, Pageable pageable);
+    Page<Match> findByMatchDate(String matchDate, Pageable pageable);
 }

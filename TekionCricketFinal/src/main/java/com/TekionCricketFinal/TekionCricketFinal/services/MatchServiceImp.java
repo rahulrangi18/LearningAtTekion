@@ -35,6 +35,10 @@ public class MatchServiceImp implements MatchService {
         return matches;
     }
     @Override
+    public Page<Match> viewMatchesByDate(String matchDate) {
+        return matchElasticSearchService.findByMatchDate(matchDate);
+    }
+    @Override
     public Page<Match> viewByTeamAndSortByDateAsc() {
         return matchElasticSearchService.findByAndOrderByMatchDateAsc();
     }
@@ -43,6 +47,7 @@ public class MatchServiceImp implements MatchService {
     public Page<Match> viewByTeamAndSortByDateDesc() {
         return matchElasticSearchService.findByAndOrderByMatchDateDesc();
     }
+
     @Override
     public Match viewById(String id) {
         Match match = matchElasticSearchService.findById(id);

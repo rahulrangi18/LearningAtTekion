@@ -17,6 +17,9 @@ public interface MatchService {
     List<Match> exactSearch(String name);
     Page<Match> viewByTeam(String teamName);
     Match viewById(String id);
+
+    Page<Match> viewMatchesByDate(String matchDate);
+
     Page<Match> viewByTeamAndSortByDateAsc();
     Page<Match> viewByTeamAndSortByDateDesc();
 }

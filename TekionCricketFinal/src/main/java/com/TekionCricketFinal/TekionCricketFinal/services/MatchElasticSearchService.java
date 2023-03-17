@@ -25,6 +25,9 @@ public class MatchElasticSearchService {
     public Page<Match> findByTeam(String team){
         return elasticCricketRepository.findByTeam1_NameOrTeam2_Name(team , team , Pageable.ofSize(2));
     }
+    public Page<Match> findByMatchDate(String matchDate) {
+        return elasticCricketRepository.findByMatchDate(matchDate,Pageable.ofSize(2));
+    }
     public Page<Match> findByAndOrderByMatchDateAsc() {
         return elasticCricketRepository.findAll(PageRequest.of(0, 2, Sort.by(Sort.Direction.ASC, "matchDate")));
     }
