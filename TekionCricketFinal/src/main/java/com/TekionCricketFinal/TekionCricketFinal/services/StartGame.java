@@ -6,10 +6,11 @@ import com.TekionCricketFinal.TekionCricketFinal.models.TeamStatus;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 
 @Service
@@ -25,6 +26,16 @@ public class StartGame {
     }
     public Match startGame(Match match,Team team1,Team team2) {
         String matchId=UUID.randomUUID().toString();
+        // Date matchDate = Date.from(LocalDate.now(ZoneId.of("Asia/Kolkata")).atStartOfDay(ZoneId.of("Asia/Kolkata")).toInstant());
+        // match.setMatchDate(matchDate);
+        // Get the current date and time in the India time zone
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+
+        // Format the date and time as an ISO 8601 string with the India time zone
+        String formattedDate = now.format(DateTimeFormatter.ISO_DATE_TIME.withZone(ZoneId.of("Asia/Kolkata")));
+
+        // Set the match date to the ISO 8601 string
+        match.setMatchDate(formattedDate);
         match.setMatchId(matchId);
         match.setTeam1(team1);
         match.setTeam2(team2);

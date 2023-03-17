@@ -52,6 +52,16 @@ public class CricketController {
     public List<Match> exactSearch(@RequestBody @NotNull TeamName teamName){
         return matchService.exactSearch(teamName.name());
     }
+
+    @GetMapping("/view-team-and-sort-by-date-asc")
+    public Page<Match> viewByTeamAndSortByDateAsc() {
+        return matchService.viewByTeamAndSortByDateAsc();
+    }
+
+    @GetMapping("/view-team-and-sort-by-date-desc")
+    public Page<Match> viewByTeamAndSortByDateDesc() {
+        return matchService.viewByTeamAndSortByDateDesc();
+    }
     @DeleteMapping("/del")
     public void deleteMatches(){
         matchService.deleteAll();

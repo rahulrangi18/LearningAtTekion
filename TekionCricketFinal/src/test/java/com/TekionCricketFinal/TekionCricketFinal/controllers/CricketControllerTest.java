@@ -33,8 +33,8 @@ public class CricketControllerTest {
     @Test
     public void testShowAll() {
         // Create some dummy matches
-        Match match1 = new Match(new Team("Team 1"), new Team("Team 2"), new ArrayList<>(), new ArrayList<>(), 0);
-        Match match2 = new Match(new Team("Team 3"), new Team("Team 4"), new ArrayList<>(), new ArrayList<>(), 0);
+        Match match1 = new Match("1",new Team("Team 1"), new Team("Team 2"), new ArrayList<>(), new ArrayList<>(), 0);
+        Match match2 = new Match("2",new Team("Team 3"), new Team("Team 4"), new ArrayList<>(), new ArrayList<>(), 0);
         List<Match> matches = new ArrayList<>();
         matches.add(match1);
         matches.add(match2);
@@ -45,7 +45,7 @@ public class CricketControllerTest {
     }
     @Test
     public void testStartMatch() {
-        Match match = new Match(new Team("Team 1"), new Team("Team 2"), new ArrayList<>(), new ArrayList<>(), 0);
+        Match match = new Match("1",new Team("Team 1"), new Team("Team 2"), new ArrayList<>(), new ArrayList<>(), 0);
         when(matchService.startMatch()).thenReturn(match);
         Match resultMatch = cricketController.startMatch();
         assertEquals(match, resultMatch);
@@ -53,7 +53,7 @@ public class CricketControllerTest {
     @Test
     public void testViewById() {
         String matchId = "123";
-        Match match = new Match(new Team("Team 1"), new Team("Team 2"), new ArrayList<>(), new ArrayList<>(), 0);
+        Match match = new Match("1",new Team("Team 1"), new Team("Team 2"), new ArrayList<>(), new ArrayList<>(), 0);
         when(matchService.viewById(anyString())).thenReturn(match);
         Match resultMatch = cricketController.viewById(matchId);
         assertEquals(match, resultMatch);

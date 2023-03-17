@@ -25,7 +25,7 @@ public class ModelTest {
         inning1.add('4');
         inning1.add('6');
         scoreBoard1.add(inning1);
-        Match match = new Match("1", team1, null, scoreBoard1, null, 100);
+        Match match = new Match("1", team1,null, scoreBoard1, null, 100);
         Assertions.assertEquals(match.getMatchId(), "1");
         Assertions.assertEquals(match.getTeam1(), team1);
         Assertions.assertNull(match.getTeam2());
@@ -87,7 +87,7 @@ public class ModelTest {
         inning1.add('4');
         inning1.add('6');
         scoreBoard1.add(inning1);
-        Match match = new Match(team1, team2, new ArrayList<>(), new ArrayList<>(), 0);
+        Match match = new Match("1",team1, team2, new ArrayList<>(), new ArrayList<>(), 0);
         StartGame startGame = new StartGame(match);
         Assertions.assertEquals(startGame.getMatch(), match);
     }

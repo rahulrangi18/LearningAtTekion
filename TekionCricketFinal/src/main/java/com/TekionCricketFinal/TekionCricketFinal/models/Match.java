@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Document(collection = "tekionMatches")
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "tekion-matches")
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 public class Match {
     @Id
     private String matchId;
-
+    @Field(type = FieldType.Object, name = "matchDate")
+    private String matchDate;
     @Field(type = FieldType.Object, name = "team1")
     private Team team1;
 
@@ -38,7 +40,8 @@ public class Match {
 
     }
 
-    public Match(Team t1, Team t2, ArrayList<ArrayList<Character>> sb1, ArrayList<ArrayList<Character>> sb2, int ts) {
+    public Match(String matchId,Team t1, Team t2, ArrayList<ArrayList<Character>> sb1, ArrayList<ArrayList<Character>> sb2, int ts) {
+        this.matchId=matchId;
         this.team1=t1;
         this.team2=t2;
         this.scoreBoard1=sb1;

@@ -5,7 +5,9 @@ import com.TekionCricketFinal.TekionCricketFinal.repository.elasticsearch.Elasti
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,13 @@ public class MatchElasticSearchService {
     }
     public Page<Match> findByTeam(String team){
         return elasticCricketRepository.findByTeam1_NameOrTeam2_Name(team , team , Pageable.ofSize(2));
+    }
+    public Page<Match> findByAndOrderByMatchDateAsc() {
+        return elasticCricketRepository.findAll(PageRequest.of(0, 2, Sort.by(Sort.Direction.ASC, "matchDate")));
+    }
+
+    public Page<Match> findByAndOrderByMatchDateDesc() {
+        return elasticCricketRepository.findAll(PageRequest.of(0, 2, Sort.by(Sort.Direction.DESC, "matchDate")));
     }
     public Page<Match> findAll(){
         return elasticCricketRepository.findAll(Pageable.unpaged());
