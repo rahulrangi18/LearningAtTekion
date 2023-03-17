@@ -28,4 +28,10 @@ public class MatchMongoService {
     public Page<Match> findByTeam(String team){
         return mongoCricketRepository.findByTeam1NameOrTeam2Name(team, team, Pageable.ofSize(10));
     }
+    public Page<Match> findByDate(String date){
+        return mongoCricketRepository.findByMatchDate(date,Pageable.ofSize(10));
+    }
+    public Page<Match> findByPartialDate(String partialDate){
+        return mongoCricketRepository.findByMatchDateStartingWith(partialDate,Pageable.ofSize(10));
+    }
 }

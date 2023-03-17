@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface MongoCricketRepository extends MongoRepository<Match,String > {
-    List<Match> findByTeam1Name(final String name);
-    List<Match> findByTeam2Name(final String name);
-    Page<Match> findByTeam1NameOrTeam2Name(final String name1, final String name2, Pageable pageable);
+public interface MongoCricketRepository extends MongoRepository<Match, String> {
+    List<Match> findByTeam1Name(String name);
+    List<Match> findByTeam2Name(String name);
+    Page<Match> findByTeam1NameOrTeam2Name(String name1, String name2, Pageable pageable);
+    Page<Match> findByMatchDate(String matchDate,Pageable pageable);
+    Page<Match> findByMatchDateStartingWith(String partialDate, Pageable pageable);
 }

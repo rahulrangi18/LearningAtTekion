@@ -36,11 +36,19 @@ public class MatchServiceImp implements MatchService {
     }
     @Override
     public Page<Match> viewMatchesByDate(String matchDate) {
-        return matchElasticSearchService.findByMatchDate(matchDate);
+        Page<Match> matches= matchElasticSearchService.findByMatchDate(matchDate);
+        if (matches.isEmpty()) {
+            matches = matchMongoService.findByDate(matchDate);
+        }
+        return matches;
     }
     @Override
     public Page<Match> viewMatchesByPartialDate(String partialDate) {
-        return matchElasticSearchService.findByMatchPartialDate(partialDate);
+        Page<Match> matches= matchElasticSearchService.findByMatchPartialDate(partialDate);
+        if (matches.isEmpty()) {
+            matches = matchMongoService.findByPartialDate(partialDate);
+        }
+        return matches;
     }
 
     @Override
