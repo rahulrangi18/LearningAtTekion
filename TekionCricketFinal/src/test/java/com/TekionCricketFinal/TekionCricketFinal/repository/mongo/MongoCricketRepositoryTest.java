@@ -27,16 +27,24 @@ class MongoCricketRepositoryTest {
         Match match = new Match();
         match.setTeam1(new Team(team1Name));
         match.setTeam2(new Team(team2Name));
+        match.setMatchDate("2023-03-17T13:01:45.941994");
+        PageRequest pageable = PageRequest.of(0, 10);
         mongoRepository.save(match);
 
-        List<Match> matches1 = mongoRepository.findByTeam1Name("Team1");
+        List<Match> matches1 = mongoRepository.findByTeam1Name(team1Name);
         assertThat(matches1);
 
-        List<Match> matches2 = mongoRepository.findByTeam2Name("Team2");
+        List<Match> matches2 = mongoRepository.findByTeam2Name(team2Name);
         assertThat(matches2);
 
-        PageRequest pageable = PageRequest.of(0, 10);
-        Page<Match> matches3 = mongoRepository.findByTeam1NameOrTeam2Name("Team1", "Team2", pageable);
+
+        Page<Match> matches3 = mongoRepository.findByTeam1NameOrTeam2Name(team1Name, team2Name, pageable);
         assertThat(matches3);
+
+        Page<Match> matches4 = mongoRepository.findByMatchDate("2023-03-17T13:01:45.941994", pageable);
+        assertThat(matches4);
+
+        Page<Match> matches5 = mongoRepository.findByMatchDateStartingWith("2023-03-17", pageable);
+        assertThat(matches5);
     }
 }

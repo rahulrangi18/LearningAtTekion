@@ -52,11 +52,11 @@ public class CricketController {
     public List<Match> exactSearch(@RequestBody @NotNull TeamName teamName){
         return matchService.exactSearch(teamName.name());
     }
-    @GetMapping("/view-matches-by-date/{matchDate}")
+    @GetMapping("/view-matches-by-timestamp/{matchDate}")
     public Page<Match> viewMatchesByDate(@PathVariable("matchDate") String matchDate) {
         return matchService.viewMatchesByDate(matchDate);
     }
-    @GetMapping("/view-matches-by-partial-date/{partialDate}")
+    @GetMapping("/view-matches-by-date/{partialDate}")
     public Page<Match> viewMatchesByPartialDate(@PathVariable("partialDate") String partialDate) {
         return matchService.viewMatchesByPartialDate(partialDate);
     }

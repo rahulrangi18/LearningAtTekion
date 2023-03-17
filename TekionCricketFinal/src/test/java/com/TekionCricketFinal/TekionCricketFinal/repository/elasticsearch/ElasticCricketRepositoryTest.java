@@ -29,20 +29,24 @@ class ElasticCricketRepositoryTest {
         Match match = new Match();
         match.setTeam1(new Team(team1Name));
         match.setTeam2(new Team(team2Name));
+        match.setMatchDate("2023-03-17T13:01:45.941994");
         elasticRepository.save(match);
 
         PageRequest pageable = PageRequest.of(0, 10);
 
-        // Test findByTeam1_NameOrTeam2_Name with exact values
-        Page<Match> matches1 = elasticRepository.findByTeam1_NameOrTeam2_Name("Team1", "Team2", pageable);
+        Page<Match> matches1 = elasticRepository.findByTeam1_NameOrTeam2_Name("India", "Pakistan", pageable);
         assertThat(matches1);
 
-        // Test findByPartialText with partial value
-        Page<Match> matches2 = elasticRepository.findByPartialText("Team", pageable);
+        Page<Match> matches2 = elasticRepository.findByPartialText("India", pageable);
         assertThat(matches2);
 
-        // Test findByExactText with exact value
-        Page<Match> matches3 = elasticRepository.findByExactText("Team1", pageable);
+        Page<Match> matches3 = elasticRepository.findByExactText("Ind", pageable);
         assertThat(matches3);
+
+        Page<Match> matches4 = elasticRepository.findByMatchDate("2023-03-17T13:01:45.941994", pageable);
+        assertThat(matches4);
+
+        Page<Match> matches5 = elasticRepository.findByPartialMatchDate("2023-03-17", pageable);
+        assertThat(matches5);
     }
 }
