@@ -1,8 +1,6 @@
 package com.TekionCricketFinal.TekionCricketFinal.services;
 
 import com.TekionCricketFinal.TekionCricketFinal.models.Match;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -19,6 +17,8 @@ public interface MatchService {
     Match viewById(String id);
 
     Page<Match> viewMatchesByDate(String matchDate);
+
+    Page<Match> viewMatchesByPartialDate(String partialDate);
 
     Page<Match> viewByTeamAndSortByDateAsc();
     Page<Match> viewByTeamAndSortByDateDesc();

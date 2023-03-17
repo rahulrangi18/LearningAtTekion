@@ -56,6 +56,10 @@ public class CricketController {
     public Page<Match> viewMatchesByDate(@PathVariable("matchDate") String matchDate) {
         return matchService.viewMatchesByDate(matchDate);
     }
+    @GetMapping("/view-matches-by-partial-date/{partialDate}")
+    public Page<Match> viewMatchesByPartialDate(@PathVariable("partialDate") String partialDate) {
+        return matchService.viewMatchesByPartialDate(partialDate);
+    }
     @GetMapping("/view-team-and-sort-by-date-asc")
     public Page<Match> viewByTeamAndSortByDateAsc() {
         return matchService.viewByTeamAndSortByDateAsc();

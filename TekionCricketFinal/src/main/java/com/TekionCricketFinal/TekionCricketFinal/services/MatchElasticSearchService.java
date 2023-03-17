@@ -28,6 +28,9 @@ public class MatchElasticSearchService {
     public Page<Match> findByMatchDate(String matchDate) {
         return elasticCricketRepository.findByMatchDate(matchDate,Pageable.ofSize(2));
     }
+    public Page<Match> findByMatchPartialDate(String matchPartialDate) {
+        return elasticCricketRepository.findByMatchDate(matchPartialDate,Pageable.ofSize(2));
+    }
     public Page<Match> findByAndOrderByMatchDateAsc() {
         return elasticCricketRepository.findAll(PageRequest.of(0, 2, Sort.by(Sort.Direction.ASC, "matchDate")));
     }
@@ -51,5 +54,4 @@ public class MatchElasticSearchService {
     public List<Match> exactSearch(String name){
         return elasticCricketRepository.findByExactText(name, Pageable.unpaged()).getContent();
     }
-
 }

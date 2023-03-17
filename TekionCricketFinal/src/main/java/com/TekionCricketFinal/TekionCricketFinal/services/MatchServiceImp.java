@@ -39,6 +39,11 @@ public class MatchServiceImp implements MatchService {
         return matchElasticSearchService.findByMatchDate(matchDate);
     }
     @Override
+    public Page<Match> viewMatchesByPartialDate(String partialDate) {
+        return matchElasticSearchService.findByMatchPartialDate(partialDate);
+    }
+
+    @Override
     public Page<Match> viewByTeamAndSortByDateAsc() {
         return matchElasticSearchService.findByAndOrderByMatchDateAsc();
     }
