@@ -1,4 +1,4 @@
-package com.TekionCricketWithDatabase.TekionCricketWithDatabase.services;
+package com.TekionCricketFinal.TekionCricketFinal.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -7,22 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.TekionCricketFinal.TekionCricketFinal.models.Match;
+import com.TekionCricketFinal.TekionCricketFinal.repository.mongo.MongoCricketRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.models.Match;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.repository.CricketRepository;
-import com.TekionCricketWithDatabase.TekionCricketWithDatabase.services.MatchService;
-
 class MatchServiceTest {
 
     @Mock
-    private CricketRepository cricketRepository;
+    private MongoCricketRepository mongoCricketRepository;
 
     @Mock
     private MatchService matchService;
@@ -36,24 +33,22 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Team")
     void testViewByTeam() {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
 
-        when(cricketRepository.findByTeam1Name(any())).thenReturn(matches);
-        when(cricketRepository.findByTeam2Name(any())).thenReturn(matches);
+        when(mongoCricketRepository.findByTeam1Name(any())).thenReturn(matches);
+        when(mongoCricketRepository.findByTeam2Name(any())).thenReturn(matches);
 
-        List<Match> result = matchService.viewByTeam("testTeam");
+        Page<Match> result = matchService.viewByTeam("testTeam");
 
         assertEquals(matches, result);
     }
 
     @Test
-    @DisplayName("Test function view by Team for No Match Found")
     void testViewByTeamNoMatchFound() {
-        when(cricketRepository.findByTeam1Name(any())).thenReturn(new ArrayList<>());
-        when(cricketRepository.findByTeam2Name(any())).thenReturn(new ArrayList<>());
+        when(mongoCricketRepository.findByTeam1Name(any())).thenReturn(new ArrayList<>());
+        when(mongoCricketRepository.findByTeam2Name(any())).thenReturn(new ArrayList<>());
 
         ResponseStatusException exception =
                 org.junit.jupiter.api.Assertions.assertThrows(
@@ -64,12 +59,11 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Id")
     void testViewById() {
         String id = "testId";
 
-        when(cricketRepository.existsById(id)).thenReturn(true);
-        when(cricketRepository.findById(id)).thenReturn(Optional.of(match));
+        when(mongoCricketRepository.existsById(id)).thenReturn(true);
+        when(mongoCricketRepository.findById(id)).thenReturn(Optional.of(match));
 
         Match result = matchService.viewById(id);
 
@@ -77,11 +71,10 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function view by Id if No match found")
     void testViewByIdNoMatchFound() {
         String id = "testId";
 
-        when(cricketRepository.existsById(id)).thenReturn(false);
+        when(mongoCricketRepository.existsById(id)).thenReturn(false);
 
         ResponseStatusException exception =
                 org.junit.jupiter.api.Assertions.assertThrows(
@@ -92,26 +85,20 @@ class MatchServiceTest {
     }
 
     @Test
-    @DisplayName("Test function for Show all")
     void testShowAll() {
         List<Match> matches = new ArrayList<>();
         matches.add(match);
-
-        when(cricketRepository.findAll()).thenReturn(matches);
-
-        List<Match> result = matchService.showAll();
-
+        when(mongoCricketRepository.findAll()).thenReturn(matches);
+        Page<Match> result = matchService.showAll();
         assertEquals(matches, result);
     }
 
     @Test
-    @DisplayName("Test function for View All")
     void testInsertMatch() {
         matchService.insertMatch(match);
     }
 
     @Test
-    @DisplayName("Test function for delete all")
     void testDeleteAll() {
         matchService.deleteAll();
     }

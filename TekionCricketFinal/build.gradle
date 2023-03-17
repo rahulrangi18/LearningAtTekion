@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.1'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.TekionCricketFinal'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/plugins-release" }
+	maven { url "https://repo.spring.io/libs-release" }
+}
+
+ext {
+	set('springCloudVersion', "2022.0.1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.0.2'
+	implementation 'org.jetbrains:annotations:23.0.0'
+    testImplementation 'junit:junit:4.13.1'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testCompileOnly 'org.projectlombok:lombok:1.18.24'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.elasticsearch.plugin:x-pack-sql-jdbc:6.8.23'
+	implementation 'org.springframework.data:spring-data-elasticsearch:5.0.2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+
