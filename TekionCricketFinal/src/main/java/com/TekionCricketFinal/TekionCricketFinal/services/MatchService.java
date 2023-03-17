@@ -16,4 +16,6 @@ public interface MatchService {
     Page<Match> showAllES();
     Page<Match> showAllMongo();
     List<Match> partialSearch(String name);
+
+    List<Match> exactSearch(String name);
 }

@@ -32,10 +32,17 @@ class ElasticCricketRepositoryTest {
         elasticRepository.save(match);
 
         PageRequest pageable = PageRequest.of(0, 10);
+
+        // Test findByTeam1_NameOrTeam2_Name with exact values
         Page<Match> matches1 = elasticRepository.findByTeam1_NameOrTeam2_Name("Team1", "Team2", pageable);
         assertThat(matches1);
 
+        // Test findByPartialText with partial value
         Page<Match> matches2 = elasticRepository.findByPartialText("Team", pageable);
         assertThat(matches2);
+
+        // Test findByExactText with exact value
+        Page<Match> matches3 = elasticRepository.findByExactText("Team1", pageable);
+        assertThat(matches3);
     }
 }

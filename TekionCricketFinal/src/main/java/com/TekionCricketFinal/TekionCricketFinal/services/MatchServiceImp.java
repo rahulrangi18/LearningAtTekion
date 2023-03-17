@@ -96,4 +96,8 @@ public class MatchServiceImp implements MatchService {
         return matchElasticSearchService.partialSearch(name);
     }
 
+    @Override
+    public List<Match> exactSearch(String name) {
+        return matchElasticSearchService.exactSearch(name);
+    }
 }

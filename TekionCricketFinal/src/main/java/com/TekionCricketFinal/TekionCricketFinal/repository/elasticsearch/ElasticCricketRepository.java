@@ -13,4 +13,7 @@ public interface ElasticCricketRepository extends ElasticsearchRepository<Match,
     Page<Match> findByTeam1_NameOrTeam2_Name(String name1, String name2, Pageable pageable);
     @Query("{\"bool\": {\"should\": [{\"wildcard\": {\"team1.name\": \"*?0*\"}},{\"wildcard\": {\"team2.name\": \"*?0*\"}}]}}")
     Page<Match> findByPartialText(String name, Pageable pageable);
+
+    @Query("{\"bool\": {\"should\": [{\"match\": {\"team1.name\": \"?0\"}},{\"match\": {\"team2.name\": \"?0\"}}]}}")
+    Page<Match> findByExactText(String name, Pageable pageable);
 }

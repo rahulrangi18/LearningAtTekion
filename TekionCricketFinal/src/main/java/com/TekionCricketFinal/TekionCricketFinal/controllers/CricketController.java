@@ -45,6 +45,13 @@ public class CricketController {
     public List<Match> partialSearch(@RequestBody @NotNull TeamName teamName){
         return matchService.partialSearch(teamName.name());
     }
+
+    @PostMapping(value = "/exact-search",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Match> exactSearch(@RequestBody @NotNull TeamName teamName){
+        return matchService.exactSearch(teamName.name());
+    }
     @DeleteMapping("/del")
     public void deleteMatches(){
         matchService.deleteAll();
