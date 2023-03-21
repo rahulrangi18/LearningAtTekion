@@ -9,6 +9,7 @@ public interface MatchService {
     Match startMatch();
     void insertMatch(Match match);
     void deleteAll();
+    void deleteMatchById(String id);
     Page<Match> showAllES();
     Page<Match> showAllMongo();
     List<Match> partialSearch(String name);

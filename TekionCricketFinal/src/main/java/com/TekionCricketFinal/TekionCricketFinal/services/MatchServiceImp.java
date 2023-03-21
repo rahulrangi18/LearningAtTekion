@@ -106,6 +106,12 @@ public class MatchServiceImp implements MatchService {
     public void deleteAll() {
         matchElasticSearchService.deleteAll();
         matchMongoService.deleteAll();
+
+    }
+    @Override
+    public void deleteMatchById(String id) {
+        matchElasticSearchService.deleteById(id);
+        matchMongoService.deleteById(id);
     }
 
     @Override

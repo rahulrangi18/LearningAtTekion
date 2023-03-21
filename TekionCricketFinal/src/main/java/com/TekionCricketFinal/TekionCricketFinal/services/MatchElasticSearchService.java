@@ -22,6 +22,7 @@ public class MatchElasticSearchService {
     public void deleteAll(){
         elasticCricketRepository.deleteAll();
     }
+
     public Page<Match> findByTeam(String team){
         return elasticCricketRepository.findByTeam1_NameOrTeam2_Name(team , team , Pageable.ofSize(2));
     }
@@ -53,5 +54,9 @@ public class MatchElasticSearchService {
 
     public List<Match> exactSearch(String name){
         return elasticCricketRepository.findByExactText(name, Pageable.unpaged()).getContent();
+    }
+
+    public void deleteById(String id) {
+        elasticCricketRepository.deleteById(id);
     }
 }

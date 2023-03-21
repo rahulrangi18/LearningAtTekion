@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -69,11 +70,18 @@ public class CricketController {
     public Page<Match> viewByTeamAndSortByDateDesc() {
         return matchService.viewByTeamAndSortByDateDesc();
     }
-    @DeleteMapping("/del")
-    public void deleteMatches(){
-        matchService.deleteAll();
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteMatchById(@PathVariable("id") String id) {
+        matchService.deleteMatchById(id);
+        return ResponseEntity.ok("Match with ID: " + id + " is deleted successfully");
     }
-    // testing
+
+    @DeleteMapping("/del-all")
+    public ResponseEntity<String> deleteMatches() {
+        matchService.deleteAll();
+        return ResponseEntity.ok("All the Matches are Deleted from the Databases");
+    }
     @GetMapping("/es-all")
     public Page<Match> showAllES(){
         return matchService.showAllES();

@@ -39,7 +39,6 @@ public class Match {
     public Match(){
 
     }
-
     public Match(String matchId,Team t1, Team t2, ArrayList<ArrayList<Character>> sb1, ArrayList<ArrayList<Character>> sb2, int ts) {
         this.matchId=matchId;
         this.team1=t1;

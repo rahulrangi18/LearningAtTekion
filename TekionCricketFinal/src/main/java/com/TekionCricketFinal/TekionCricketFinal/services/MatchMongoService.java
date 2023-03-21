@@ -34,4 +34,8 @@ public class MatchMongoService {
     public Page<Match> findByPartialDate(String partialDate){
         return mongoCricketRepository.findByMatchDateStartingWith(partialDate,Pageable.ofSize(10));
     }
+
+    public void deleteById(String id) {
+        mongoCricketRepository.deleteById(id);
+    }
 }

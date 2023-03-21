@@ -61,7 +61,7 @@ public class StartGame {
 
         int toss = rand.nextInt(0, 2);
 
-        if(toss==1)
+        if(toss==0)
             System.out.println("It's Heads\n");
         else
             System.out.println("It's Tails\n");
