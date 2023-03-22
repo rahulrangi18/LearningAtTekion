@@ -40,13 +40,20 @@ public class MatchServiceImp implements MatchService {
         if (matches.isEmpty()) {
             matches = matchMongoService.findByDate(matchDate);
         }
+        if(matches.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found");
+        }
         return matches;
     }
+
     @Override
     public Page<Match> viewMatchesByPartialDate(String partialDate) {
         Page<Match> matches= matchElasticSearchService.findByMatchPartialDate(partialDate);
         if (matches.isEmpty()) {
             matches = matchMongoService.findByPartialDate(partialDate);
+        }
+        if(matches.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found");
         }
         return matches;
     }
