@@ -30,11 +30,7 @@ public class StartGame {
         // match.setMatchDate(matchDate);
         // Get the current date and time in the India time zone
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
-
-        // Format the date and time as an ISO 8601 string with the India time zone
         String formattedDate = now.format(DateTimeFormatter.ISO_DATE_TIME.withZone(ZoneId.of("Asia/Kolkata")));
-
-        // Set the match date to the ISO 8601 string
         match.setMatchDate(formattedDate);
         match.setMatchId(matchId);
         match.setTeam1(team1);
