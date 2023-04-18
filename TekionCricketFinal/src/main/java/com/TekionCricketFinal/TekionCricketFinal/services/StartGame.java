@@ -103,7 +103,7 @@ public class StartGame {
         System.out.println();
 
         if (battingTeam.getStatus() == TeamStatus.WON) {
-            System.out.println(battingTeam.getTeamName() + " won the match" + " by " + (10 - battingTeam.getWickets()) + " wickets");
+            System.out.println(battingTeam.getTeamName() + " won the match" + " by " + (TotalOvr - battingTeam.getWickets()) + " wickets");
         } else if (battingTeam.getStatus() == TeamStatus.LOST) {
             System.out.println(bowlingTeam.getTeamName() + " won the match" + " by " + (bowlingTeam.getRuns() - battingTeam.getRuns()) + " runs");
         } else {
